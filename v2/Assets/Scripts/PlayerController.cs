@@ -17,10 +17,12 @@ public class PlayerController : MonoBehaviour {
     public float Speed;
     [Range(0,100)]
     public float JumpAltitude;
+    [Range(0,100)]
+    public float FallAltitude;
 
     // Ground
     public Transform GroundCheck;
-    public LayerMask Greound;
+    public LayerMask GroundLayer;
     public float radios;
     bool IsGrounded;
 
@@ -34,7 +36,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     void FixedUpdate() {
-        IsGrounded=Physics2D.OverlapCircle(GroundCheck.position,radios,Greound);
+        IsGrounded=Physics2D.OverlapCircle(GroundCheck.position,radios,GroundLayer);
 
         float MoveDirection = Input.GetAxis("Horizontal");
 
@@ -55,9 +57,13 @@ public class PlayerController : MonoBehaviour {
     void Update(){
         if (Input.GetKeyDown(KeyCode.UpArrow)&&IsGrounded){
             body.velocity=Vector2.up*JumpAltitude;
+            FallAltitude=10;
             animator.SetInteger(Parameter,Jump);
             jumpSound.Play();
-            
+        }
+        if (body.velocity.y>0){
+            body.velocity+=Vector2.up*Physics2D.gravity.y*FallAltitude*Time.deltaTime;
+            FallAltitude++;
         }
     }
     void Flip(){
