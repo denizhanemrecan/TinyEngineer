@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour {
             body.velocity=Vector2.up*JumpAltitude;
             FallAltitude=10;
             animator.SetInteger(Parameter,Jump);
-            jumpSound.Play();
+            //jumpSound.Play();
         }
         if (body.velocity.y>0){
             body.velocity+=Vector2.up*Physics2D.gravity.y*FallAltitude*Time.deltaTime;
