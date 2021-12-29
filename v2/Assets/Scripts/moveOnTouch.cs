@@ -9,7 +9,7 @@ public class moveOnTouch : MonoBehaviour
     public Transform SnapTransform;
     [Range(0,100)]
     public float SnapDistance;
-    public Collider2D PlayerCol;
+    public Transform PlayerCol;
     private bool moving;
     //private Rigidbody2D body;
      
@@ -17,10 +17,10 @@ public class moveOnTouch : MonoBehaviour
         //body=GetComponent<Rigidbody2D>();
     }
     
-    private void OnCollisionEnter2D(Collision2D Other) { 
+    private void OnTriggerEnter2D(Collider2D Other) { 
         // player move with platform
        if (Other.gameObject.tag == "Player") {
-            PlayerCol= Other.collider;
+            PlayerCol= Other.transform;
             moving = true;
             Other.transform.SetParent(transform);
         }
