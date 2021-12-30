@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour {
     int Idel=0;
     int Walk=1;
     int Jump=2;
+    int Die=3;
     
     Rigidbody2D body;
 
@@ -57,7 +58,7 @@ public class PlayerController : MonoBehaviour {
     void Update(){
         if (Input.GetKeyDown(KeyCode.UpArrow)&&IsGrounded){
             body.velocity=Vector2.up*JumpAltitude;
-            FallAltitude=10;
+            FallAltitude=-10;
             animator.SetInteger(Parameter,Jump);
             //jumpSound.Play();
         }
@@ -71,5 +72,8 @@ public class PlayerController : MonoBehaviour {
         Vector3 scaler = transform.localScale;
         scaler.x*=-1;
         transform.localScale=scaler;
+    }
+    public void Dieing(){
+        animator.SetInteger(Parameter,Die);
     }
 }
