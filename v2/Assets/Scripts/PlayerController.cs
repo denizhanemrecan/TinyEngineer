@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour {
     public LayerMask GroundLayer;
     public float radios;
     bool IsGrounded;
+    bool IsDead=false;
 
     AudioSource jumpSound;
     
@@ -40,7 +41,6 @@ public class PlayerController : MonoBehaviour {
         IsGrounded=Physics2D.OverlapCircle(GroundCheck.position,radios,GroundLayer);
 
         float MoveDirection = Input.GetAxis("Horizontal");
-
         if (MoveDirection==0){
             animator.SetInteger(Parameter,Idel);
         }else if (MoveDirection!=0 && IsGrounded) {
@@ -51,12 +51,12 @@ public class PlayerController : MonoBehaviour {
 
         if (FacingRight==false&& MoveDirection>0){
             Flip();
-        }else if (FacingRight==true&& MoveDirection<0){
+        }else if (FacingRight==true&& MoveDirection<0 && !IsDead){
             Flip();
         }
     }
     void Update(){
-        if (Input.GetKeyDown(KeyCode.UpArrow)&&IsGrounded){
+        if (Input.GetKeyDown(KeyCode.UpArrow)&&IsGrounded && !IsDead){
             body.velocity=Vector2.up*JumpAltitude;
             FallAltitude=-10;
             animator.SetInteger(Parameter,Jump);
@@ -75,5 +75,6 @@ public class PlayerController : MonoBehaviour {
     }
     public void Dieing(){
         animator.SetInteger(Parameter,Die);
+        IsDead=true;
     }
 }

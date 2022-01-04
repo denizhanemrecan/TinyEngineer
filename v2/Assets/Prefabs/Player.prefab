@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 3
-  JumpAltitude: 30
+  JumpAltitude: 7
   FallAltitude: 1
   GroundCheck: {fileID: 690713850}
   GroundLayer:
