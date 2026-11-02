@@ -1,6 +1,6 @@
 # World's Best Engineer (Tiny Engineer)
 
-A 2D puzzle-platformer made in Unity during the **BUG Fall GameJam** at Bahçeşehir University.
+A 2D platformer made in Unity during the **BUG Fall GameJam** at Bahçeşehir University.
 
 > Look! It's a tiny engineer!
 
